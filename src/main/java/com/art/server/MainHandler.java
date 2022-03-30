@@ -24,10 +24,24 @@ public class MainHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        if (msg.equals())
-        System.out.println(msg);
-        ctx.channel().writeAndFlush(msg);
-
+        if (msg.equals("Chats")){
+            ArrayList<String> users = getAllChats();
+            for (int i=0;i< users.size();i++){
+                ctx.channel().writeAndFlush(users.get(i));
+                Thread.sleep(100);
+            }
+        }
+        else if (msg.equals("msg")){
+            ArrayList<String> msg1 = getAllMsg();
+            for (int i=0;i< msg1.size();i++){
+                ctx.channel().writeAndFlush(msg1.get(i));
+                Thread.sleep(100);
+            }
+        }
+        else {
+            System.out.println(msg);
+            ctx.channel().writeAndFlush(msg);
+        }
     }
 
     @Override
@@ -35,29 +49,24 @@ public class MainHandler extends SimpleChannelInboundHandler<String> {
         cause.printStackTrace();
         ctx.close();
     }
-    public static ArrayList<String> getMsgfromDB1(){
-        ArrayList<String> ans = new ArrayList<>();
-        return ans;
-    }
-    public static ArrayList<String> getMsgfromDB2(){
-        ArrayList<String> ans = new ArrayList<>();
-        return ans;
-    }
 
 
 
-
-    public static ArrayList<ArrayList<String>> getAllMsg(int id_from,int id_to){
-        ArrayList<String> msg1 = new ArrayList<>();
-        ArrayList<String> msg2 = new ArrayList<>();
-
-    }
-    public void allMsg(){
-        ArrayList<String> messages = new ArrayList<>();
-        // в этот массив добавить все нужные строки таблицы
-
+    public static ArrayList<String> getAllChats(){ // это нужно карену написать
+        ArrayList<String> users = new ArrayList<>();
+        users.add("Artem");
+        users.add("Igor");
+        users.add("Karen");
+        return users;
     }
 
 
+    public static ArrayList<String> getAllMsg(){ // это нужно карену написать
+        ArrayList<String> msg = new ArrayList<>();
+        msg.add("Привет");
+        msg.add("Как дела?");
+        return msg;
+
+    }
 
 }
