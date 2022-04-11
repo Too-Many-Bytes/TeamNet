@@ -37,7 +37,7 @@ public class MainHandler extends SimpleChannelInboundHandler<String> {
                 ctx.channel().writeAndFlush(msg1.get(i));
                 Thread.sleep(100);
             }
-        }//
+        }
         else {
             System.out.println(msg);
             ctx.channel().writeAndFlush(msg);
