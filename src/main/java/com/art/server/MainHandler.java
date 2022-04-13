@@ -15,7 +15,7 @@ public class MainHandler extends SimpleChannelInboundHandler<String> {
         System.out.println("Чёрт подключился");
         channels.add(ctx.channel());
         clientName = "Клиент №"+channels.size();
-    }
+    }//
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
